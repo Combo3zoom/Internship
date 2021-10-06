@@ -1,49 +1,32 @@
 from random import uniform
 
 def InputArray():
-    check=True
     array=[]
-    while True:
-        try:
-            size=int(input("Enter array order: "))   
-            while(size<=0):
-                size=int(input("Enter array order more 0: "))
-        except ValueError:
-            print("Incorrect size, try again")    
-            continue
-        break
-
+    size = InputNumber("Enter size matrix ")   
+    while(size <= 0):
+        size = InputNumber("Size must be greater zero ")
+      
     for i in range(size):
         array.append([])
         for j in range(size):
-             check=True
-             while(check):
-                 try:
-                      array[i] += [float(input())]
-                      check=False
-                 except ValueError:
-                      print("re-enter element, try again")  
-          
+             array[i] += [InputNumber("Enter matrix value ")]                               
     print()
     return array 
       
      
 
 def AutomaticallyInputArray():
-    a,b,size=0,0,0
-    while True:
-        size=int(input("Enter array order: "))
-        while(size<=0):
-            size=int(input("Enter array order more 0: "))
+    size = InputNumber("Enter size matrix ")   
+    while(size <= 0):
+        size = InputNumber("Size must be greater zero ")
 
-        print("Also enter the lower and upper limits of the matrix elements:")
-        a=float(input("a = "))
-        b=float(input("b = "))
-        while(a>b):
-            print("a must be less b")
-            a=float(input("a = "))
-            b=float(input("b = "))
-        break
+    print("Also enter the lower and upper limits of the matrix elements:")
+    a = InputNumber("a = ")
+    b = InputNumber("b = ")
+    while(a > b):
+        print("a must be less b")
+        a = InputNumber("a = ")
+        b = InputNumber("b = ")      
 
     array=[]
     for i in range(size):
@@ -109,6 +92,14 @@ def IsErrorEmpty(array):
         return 1
     return 0
 
+def InputNumber(messange):
+    while True:
+        try:
+            value=int(input(messange))
+            break
+        except ValueError:
+            print("Uncorrect type")
+    return value
 
 def menu():
     array=[]
