@@ -1,0 +1,22 @@
+import random
+
+class IteratorLinkedList:
+    def __init__(self, down, up, function = random.randint, size = 1):
+        self.size = size
+        self.down = down
+        self.up = up
+        self.function = function
+        self.index = 0
+
+    def __iter__(self):
+        return self
+
+    def __next__(self):
+        if self.index >= self.size:
+            raise StopIteration
+        self.index += 1
+        return self.function(self.down, self.up)
+
+def IterRandom(lower, up, size = 1, func = random.randint):
+    for i in IteratorLinkedList(lower, up, func, size):
+        return i
