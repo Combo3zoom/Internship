@@ -1,4 +1,3 @@
-
 def CatchValueError(function):
     def Wrapper(value):
         try:
@@ -16,6 +15,8 @@ def isFloatNumber(value):
 
 @CatchValueError
 def isIntNumber(value):
+    if value == "exit":
+        return value
     value = int(value)
     return value
 
@@ -24,7 +25,6 @@ def CheckSizeOrIndex(value):
     value = isIntNumber(value)
     if value >= 0:
         return value
-
 
 
 @CatchValueError
@@ -43,10 +43,3 @@ def rangeLimits(lower, upper):
     if(upper < lower):
         upper, lower = lower, upper
     return lower, upper
-
-
-
-
-'''
-Exception
-'''

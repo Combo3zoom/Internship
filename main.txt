@@ -1,11 +1,13 @@
 from random import randint
 
+
 class Node:
 
     def __init__(self, value=None, next=None, previous=None):
         self.value = value
         self.next = next
         self.previous = previous
+
 
 class LinkedList:
     head: Node = None
@@ -15,7 +17,7 @@ class LinkedList:
     def __init__(self, value=None):
         if value is None:
             return
-        self.Add(value)
+        self.add(value)
 
     def add(self, value):
         # validation for value
@@ -27,7 +29,7 @@ class LinkedList:
         self.count += 1
         return
 
-    def randomAdd(self, upperLimit, lowerLimit, count = 1):
+    def randomAdd(self, upperLimit, lowerLimit, count=1):
         # validation for upperLimit and lowerLimit
         value = randint(upperLimit, lowerLimit)
         if self.head is None:
@@ -38,14 +40,18 @@ class LinkedList:
         self.count += 1
         return
 
-
-    def insert(self, value, index):
+    def insert(self, value, index = 0):
         # validation for index and value
-        if index < 0 or index >= self.count:
-            raise IndexError
+        if self.count == 0:
+            self.add(value)
+            return
+
+        if index < 0 or index > self.count:
+            raise IndexError("incorrect index")
 
         if index == self.count:
             self.add(value)
+            return
 
         if index == 0:
             if self.head is None:
@@ -136,5 +142,3 @@ class LinkedList:
             i += 1
             OurNode = OurNode.next
         return
-
-
