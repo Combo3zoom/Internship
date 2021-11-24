@@ -1,0 +1,45 @@
+def CatchValueError(function):
+    def Wrapper(value):
+        try:
+            return function(value)
+        except ValueError:
+            print("Uncorrect type")
+            raise ValueError
+    return Wrapper
+
+
+@CatchValueError
+def isFloatNumber(value):
+    value = float(value)
+    return value
+
+@CatchValueError
+def isIntNumber(value):
+    if value == "exit":
+        return value
+    value = int(value)
+    return value
+
+@CatchValueError
+def CheckSizeOrIndex(value):
+    value = isIntNumber(value)
+    if value >= 0:
+        return value
+
+
+@CatchValueError
+def inputMenu(number):
+    lower, upper = 1, 7
+    if number == 'exit':
+        return number
+    number = isIntNumber(number)
+    if(number >= lower or number <= upper):
+        return number
+    else:
+        print('Enter number on range 1 to 7')
+        raise Exception
+
+def rangeLimits(lower, upper):
+    if(upper < lower):
+        upper, lower = lower, upper
+    return lower, upper

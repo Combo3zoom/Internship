@@ -1,0 +1,70 @@
+import Validation
+from Strategy import FileStrategy, IteratorStrategy
+
+
+def PrintMenu():
+    print('Enter \n'
+          '1 - strategy 1 \n'
+          '2 - strategy 2 \n'
+          '3 - insert value by index \n'
+          '4 - delete by index \n'
+          '5 - show list \n'
+          '6 - delete recurrences for a specific item \n'
+          '7 - add value'
+          'exit - exit the program \n')
+
+
+def UserChooose():
+    userChoose = Validation.inputMenu(input('Enter from 1 to 6 or exit: '))
+    return userChoose
+
+
+def Option1(listt):
+    file = input("Enter path file: ")
+    strategy = FileStrategy(file)
+    value = strategy.execute()
+    index = Validation.CheckSizeOrIndex((input('Enter integer value, which greater zero: ')))
+    for i in range(len(value)):
+        listt.insert(value[i], index)
+        index += 1
+    return listt
+
+
+def Option2(listt):
+    while True:
+        lowerLimit = Validation.isIntNumber(input('Enter integer value lower limit: '))
+        upperLimit = Validation.isIntNumber(input('Enter integer value upper limit: '))
+        if lowerLimit == "exit" or upperLimit == "exit":
+            break
+        strategy = IteratorStrategy(lowerLimit, upperLimit)
+        listt.insert(strategy.execute(),
+                     Validation.CheckSizeOrIndex((input('Enter integer value, which greater zero: '))))
+    return listt
+
+
+def Option3(listt):
+    listt.insert(Validation.isIntNumber(input('Enter integer value: ')),
+                 Validation.CheckSizeOrIndex((input('Enter integer value, which greater zero: '))))
+
+    listt.insert(Validation.isIntNumber(input('Enter integer value: ')), FileStrategy(''))
+    return listt
+
+
+def Option4(listt):
+    listt.deleteNode(Validation.CheckSizeOrIndex(input('Enter index value, which you want delete ')))
+    return listt
+
+
+def Option5(listt):
+    listt.printList()
+    return listt
+
+
+def Option6(listt):
+    listt.DeleteReplaceNumbers(Validation.isIntNumber(input('Enter value, which you want delete in list ')))
+    return listt
+
+
+def Option7(listt):
+    listt.add(Validation.isIntNumber(input('Enter integer value: ')))
+    return listt

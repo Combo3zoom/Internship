@@ -1,0 +1,30 @@
+import Iterator
+import Validation
+from main import LinkedList
+
+
+class IteratorStrategy:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+        return
+
+    def execute(self):
+        val = Iterator.IterRandom(self.a, self.b)
+        return val
+
+
+class FileStrategy:
+    def __init__(self, file):
+        self.file = file
+        return
+
+    def execute(self):
+        ourFile = open(self.file, "r")
+        arr = []
+        for line in ourFile:
+            line = line.strip()
+            line = int(line)
+            arr.append(line)
+        ourFile.close()
+        return arr

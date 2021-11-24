@@ -1,0 +1,45 @@
+import Validation
+from Strategy import FileStrategy, IteratorStrategy
+from main import LinkedList
+import menuFunction
+
+
+def menu():
+    listt = LinkedList()
+    while True:
+        try:
+            menuFunction.PrintMenu()
+
+            userChoose = menuFunction.UserChooose()
+            if userChoose == 1:
+                listt = menuFunction.Option1(listt)
+                continue
+            if userChoose == 2:
+                listt = menuFunction.Option2(listt)
+                continue
+            if userChoose == 3:
+                listt = menuFunction.Option3(listt)
+                continue
+            if userChoose == 4:
+                listt = menuFunction.Option4(listt)
+                continue
+            if userChoose == 5:
+                listt = menuFunction.Option5(listt)
+                continue
+            if userChoose == 6:
+                listt = menuFunction.Option6(listt)
+                continue
+            if userChoose == 7:
+                listt = menuFunction.Option7(listt)
+                continue
+            if userChoose == 'exit':
+                break
+            if userChoose != 'exit':
+                continue
+        except Exception as error:
+            print(error)
+            continue
+    return
+
+
+menu()
